@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { routing } from "./app-routing.module";
@@ -12,6 +12,7 @@ import { FormsModule }   from '@angular/forms';
 import { ApiService } from "./services/apiservice.service";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TokenInterceptor } from "./services/token-interceptor.service";
+
 
 
 import { ManagerComponent } from './components/manager/manager.component';
@@ -61,6 +62,9 @@ import {SubtaskServiceService} from './services/subtask-service.service';
 import {EmployeeUpdtaeComponent} from './components/employee-updtae/employee-updtae.component';
 import { AddmembersComponent } from './components/addmembers/addmembers.component';
 import { ViewmembersComponent } from './components/viewmembers/viewmembers.component';
+import { ErrorpageComponent } from './components/errorpage/errorpage.component';
+
+import {ErrorService} from './services/error.service';
 
 @NgModule({
   declarations: [
@@ -98,6 +102,8 @@ import { ViewmembersComponent } from './components/viewmembers/viewmembers.compo
     EmployeeUpdtaeComponent,
     AddmembersComponent,
     ViewmembersComponent,
+    ErrorpageComponent,
+   
   ],
   imports: [
     FormsModule,
@@ -141,7 +147,12 @@ import { ViewmembersComponent } from './components/viewmembers/viewmembers.compo
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }],
+    },
+    {
+      provide: ErrorHandler,
+      useClass:ErrorService
+    }
+ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

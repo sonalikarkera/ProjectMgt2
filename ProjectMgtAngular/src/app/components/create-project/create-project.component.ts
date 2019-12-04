@@ -96,7 +96,7 @@ export class CreateProjectComponent implements OnInit {
     this.projectDescStake.stakeholders = this.projectMapper.stakeholders;
 
     //Data saving operation 
-    this.projectService.saveProject(this.project).subscribe(result => {
+    this.projectService.save(this.project).subscribe(result => {
 
       poject1 = result;
       this.projectDescStake.projectId = poject1.projectId;

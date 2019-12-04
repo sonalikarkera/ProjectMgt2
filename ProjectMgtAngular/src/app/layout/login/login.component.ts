@@ -94,23 +94,24 @@ export class LoginComponent implements OnInit {
         window.localStorage.setItem('token', data.result.token);
         sessionStorage.setItem('username', loginPayload.username);
         sessionStorage.setItem('eid', data.result.userId);
-
-        console.log("admin");
+        sessionStorage.setItem('usertype',data.result.useType);
+        console.log(data.result);
         this.router.navigate(['side-nav']);
       }
       else if (data.status === 201) {
         window.localStorage.setItem('token', data.result.token);
-        sessionStorage.setItem('username', loginPayload.username);
+        sessionStorage.setItem('usertype', data.result.useType);
         sessionStorage.setItem('eid',data.result.employeeId);
+        sessionStorage.setItem('username', loginPayload.username);
         console.log("employee");
        // console.log(data.result.employeeId);
         this.router.navigate(['agreedoc']);
 
       }
       else if (data.status === 202) {
-        window.localStorage.setItem('token', data.result.token);
-        sessionStorage.setItem('token', data.result.token);
         sessionStorage.setItem('username', loginPayload.username);
+        sessionStorage.setItem('token', data.result.token);
+        sessionStorage.setItem('usertype',data.result.useType);
         sessionStorage.setItem('eid',data.result.employeeId);
         // // console.log(data.result.employeeId);
         // console.log("manager");
@@ -127,12 +128,16 @@ export class LoginComponent implements OnInit {
         // });
 
       }
-      else if (data.status === 401) {
+      else if (data.status === 402) {
         this.invalidLogin = true;
         alert("Invalid username and password");
       }
-      else {
+      else if(data.status === 0) {
+        alert("Sorry Server is down")
 
+      }
+      else {
+        alert("Sorry Server is down")
       }
     });
   }

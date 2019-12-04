@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from "./layout/login/login.component";
 
-import { AuthGaurdService } from './services/auth-gaurd.service';
 import { ManagerComponent } from './components/manager/manager.component';
 import { AgreedocComponent } from './components/agreedoc/agreedoc.component';
 import { CardLayoutComponent } from './layout/card-layout/card-layout.component';
@@ -18,37 +17,67 @@ import { TaskMComponent } from './components/taskM/taskM.component';
 import { SubtaskMComponent } from './components/subtaskM/subtaskM.component';
 import { WorkforceMComponent } from './layout/workforce-m/workforce-m.component';
 import { CardLayoutMComponent } from './components/card-layout-m/card-layout-m.component';
-import {EmployeeUpdtaeComponent} from './components/employee-updtae/employee-updtae.component';
+import { EmployeeUpdtaeComponent } from './components/employee-updtae/employee-updtae.component';
+import { RolebasedauthService } from './services/rolebasedauth.service';
+import { ErrorpageComponent } from './components/errorpage/errorpage.component';
 
 const routes: Routes = [
-    { path: '', component: LoginComponent },
-    {path : 'employee', component: EmployeeUpdtaeComponent},
-    { path: 'login', component: LoginComponent },
-    { path: 'manager', component: ManagerComponent, canActivate: [AuthGaurdService] },
-    { path: 'agreedoc', component: AgreedocComponent, canActivate: [AuthGaurdService] },
+    {
+        path: '', component: LoginComponent
+    },
+
+
+    { path: 'errorpage', component: ErrorpageComponent },
+    {
+        path: 'employee', component: EmployeeUpdtaeComponent, data: {
+            expectedRole: 'MEMBER'
+        }
+    },
+    {
+        path: 'login', component: LoginComponent,
+    },
+    {
+        path: 'manager', component: ManagerComponent, canActivate: [RolebasedauthService], data: {
+            expectedRole: 'MANAGER'
+        }
+    },
+    { path: 'agreedoc', component: AgreedocComponent, canActivate: [RolebasedauthService] },
 
     {
-        path: 'manager', component: ManagerComponent, canActivate: [AuthGaurdService],
+        path: 'manager', component: ManagerComponent, canActivate: [RolebasedauthService],
+
         children: [
             {
                 path: '',
                 component: CardLayoutMComponent,
-                canActivate: [AuthGaurdService]
+                canActivate: [RolebasedauthService],
+                data: {
+                    expectedRole: 'MANAGER'
+                }
             },
             {
                 path: 'card',
                 component: CardLayoutMComponent,
-                canActivate: [AuthGaurdService]
+                canActivate: [RolebasedauthService],
+                data: {
+                    expectedRole: 'MANAGER'
+                }
             },
             {
                 path: 'taskM',
                 component: TaskMComponent,
-                canActivate: [AuthGaurdService]
+                canActivate: [RolebasedauthService],
+                data: {
+                    expectedRole: 'MANAGER'
+                }
             },
             {
                 path: 'subtaskM',
                 component: SubtaskMComponent,
-                canActivate: [AuthGaurdService]
+                canActivate: [RolebasedauthService],
+                data: {
+                    expectedRole: 'MANAGER'
+                }
             }
         ]
     },
@@ -58,53 +87,81 @@ const routes: Routes = [
     //   {path: 'side-nav/completed', component: CompletedProjectComponent},
 
     {
-        path: 'side-nav', component: SidenavComponent, canActivate: [AuthGaurdService],
+        path: 'side-nav', component: SidenavComponent, canActivate: [RolebasedauthService],
         children: [{
             path: 'completed',
             component: CompletedProjectComponent,
-            canActivate: [AuthGaurdService]
+            canActivate: [RolebasedauthService],
+            data: {
+                expectedRole: 'ADMIN'
+            }
         },
         {
             path: '',
             component: CardLayoutComponent,
-            canActivate: [AuthGaurdService]
+            canActivate: [RolebasedauthService],
+            data: {
+                expectedRole: 'ADMIN'
+            }
+
         },
         {
             path: 'project',
             component: CardLayoutComponent,
-            canActivate: [AuthGaurdService]
+            canActivate: [RolebasedauthService],
+            data: {
+                expectedRole: 'ADMIN'
+            }
 
         },
         {
             path: 'workforce',
             component: WorkforceComponent,
-            canActivate: [AuthGaurdService]
+            canActivate: [RolebasedauthService],
+            data: {
+                expectedRole: 'ADMIN'
+            }
         },
         {
             path: 'task',
             component: TaskComponent,
-            canActivate: [AuthGaurdService]
+            canActivate: [RolebasedauthService],
+            data: {
+                expectedRole: 'ADMIN'
+            }
         },
         {
             path: 'subtask',
             component: SubtaskComponent,
-            canActivate: [AuthGaurdService]
+            canActivate: [RolebasedauthService],
+            data: {
+                expectedRole: 'ADMIN'
+            }
         },
 
         {
             path: 'ongoing',
             component: OngoingProjectComponent,
-            canActivate: [AuthGaurdService]
+            canActivate: [RolebasedauthService],
+            data: {
+                expectedRole: 'ADMIN'
+            }
         },
         {
             path: 'details',
             component: ProjectDetailsComponent,
-            canActivate: [AuthGaurdService]
+            canActivate: [RolebasedauthService],
+            data: {
+                expectedRole: 'ADMIN'
+            }
         },
         {
             path: 'createproject',
             component: CreateProjectComponent,
-            canActivate: [AuthGaurdService]
+            canActivate: [RolebasedauthService],
+            data: {
+                expectedRole: 'ADMIN'
+            }
         }
         ]
     }
