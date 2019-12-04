@@ -13,7 +13,7 @@ export class SubtaskService {
   private subtaskURL: string;
   private saveSubTaskURL: string;
   constructor(private http: HttpClient) {
-    this.subUrl = 'http://b8java12.iiht.tech:9090/api/getsubtasks';
+    this.subUrl = 'http://172.18.8.211:8050/web-app/getAllsubtasksproj';
     this.subtaskURL = 'spring-end/subtask/SubTaskByTaskId';
     this.saveSubTaskURL = 'spring-end/subtask/SubTask';
   }

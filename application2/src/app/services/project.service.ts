@@ -17,7 +17,7 @@ export class ProjectService {
 
 
   constructor(private http: HttpClient) {
-    this.projectUrl = 'http://localhost:9090/api/getProjects';
+    this.projectUrl = 'http://localhost:9999/getProjectDetails';
     this.projectManagerUrl = 'spring-end/project/Project';
     this.projectDescServiceUrl = 'spring-end/projectDesc/saveProjectDesc';
 
@@ -25,10 +25,10 @@ export class ProjectService {
     this.projectByIdUrl = 'spring-end/project/ProjectById';
     this.completeProjectUrl = 'spring-end/project/CompleteProject';
   }
-
+//get all projects
   public getAllProjectDetails(): Observable<Project[]> {
-
-    var valu= this.http.get<Project[]>( this.projectUrl);
+    var allUrl ="http://localhost:9999/getAllProjects";
+    var valu= this.http.get<Project[]>(allUrl);
     console.log(valu);
     return valu;
  }
@@ -54,7 +54,7 @@ export class ProjectService {
   }
 
  
-
+//get project by id from sql
   public getProjectById(id: number): Observable<Project[]> {
     const url = `${this. projectUrl}/${id}`;
     console.log(url);
@@ -64,31 +64,31 @@ export class ProjectService {
       console.error('An error occurred', error);
       return Promise.reject(error.message || error);
       }
-
+//get project detail by id from mongo
       public findMongodata(id: number): Observable<Projectmongo[]> {
         var mong="mongodb";
         const url = `${this. projectUrl}/${mong}/${id}`;
         return this.http.get<Projectmongo[]>(url);
       }
   public getOngoingProjectByYear(yr:number):Observable<Project[]> {
-    var pyr ="http://localhost:9090/api/OngoingByYear";
+    var pyr ="http://localhost:8050/web-app/api/OngoingByYear";
     const url = `${pyr}/${yr}`;
     return this.http.get<Project[]>(url);
   }
 
   public getCompletedProjectByYear(yr:number):Observable<Project[]> {
-    var pyr ="http://localhost:9090/api/CompletedByYear";
+    var pyr ="http://localhost:8050/web-app/api/CompletedByYear";
     const url = `${pyr}/${yr}`;
     return this.http.get<Project[]>(url);
   }
   public getLatestProject():Observable<Project[]>{
-    var latestUrl ="http://localhost:9090/api/getLatest";
+    var latestUrl ="http://localhost:8050/web-app/api/getLatest";
   
     return this.http.get<Project[]>(latestUrl);
   }
 
   public getProjectCount():Observable<number[]>{
-    var CountUrl ="http://localhost:9090/api/getByYear";
+    var CountUrl ="http://localhost:9999/api/getByYear";
    
     return this.http.get<number[]>(CountUrl);
   }

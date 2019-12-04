@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from "./layout/login/login.component";
-import { SuccessComponent } from './components/success/success.component';
+
 import { AuthGaurdService } from './services/auth-gaurd.service';
-import { ManagerComponent } from './components1/manager/manager.component';
+import { ManagerComponent } from './components/manager/manager.component';
 import { AgreedocComponent } from './components/agreedoc/agreedoc.component';
 import { CardLayoutComponent } from './layout/card-layout/card-layout.component';
 import { WorkforceComponent } from './layout/work-force/work-force.component';
@@ -14,14 +14,15 @@ import { OngoingProjectComponent } from './components/ongoing-project/ongoing-pr
 import { ProjectDetailsComponent } from './components/project-details/project-details.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CreateProjectComponent } from './components/create-project/create-project.component';
-import { TaskMComponent } from './components1/taskM/taskM.component';
-import { SubtaskMComponent } from './components1/subtaskM/subtaskM.component';
+import { TaskMComponent } from './components/taskM/taskM.component';
+import { SubtaskMComponent } from './components/subtaskM/subtaskM.component';
 import { WorkforceMComponent } from './layout/workforce-m/workforce-m.component';
-import { CardLayoutMComponent } from './components1/card-layout-m/card-layout-m.component';
+import { CardLayoutMComponent } from './components/card-layout-m/card-layout-m.component';
+import {EmployeeUpdtaeComponent} from './components/employee-updtae/employee-updtae.component';
 
 const routes: Routes = [
     { path: '', component: LoginComponent },
-    { path: 'success', component: SuccessComponent, canActivate: [AuthGaurdService] },
+    {path : 'employee', component: EmployeeUpdtaeComponent},
     { path: 'login', component: LoginComponent },
     { path: 'manager', component: ManagerComponent, canActivate: [AuthGaurdService] },
     { path: 'agreedoc', component: AgreedocComponent, canActivate: [AuthGaurdService] },

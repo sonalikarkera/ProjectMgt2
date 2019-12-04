@@ -1,67 +1,57 @@
-<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <h2>End-User License Agreement (EULA) of <span class="app_name">Project Management</span></h2>
+<div class="container border p-3 mt-3 rounded" [hidden]="hide">
 
-<p>This End-User License Agreement ("EULA") is a legal agreement between you and <span class="company_name">IBM</span></p>
+  <mat-card>
 
-<p>This EULA agreement governs your acquisition and use of our <span class="app_name">Project Management</span> software ("Software") directly from <span class="company_name">IBM</span> or indirectly through a <span class="company_name">IBM</span> authorized reseller or distributor (a "Reseller").</p>
+    <mat-card-header>
+      <mat-card-title>Terms and Conditions</mat-card-title>
+    </mat-card-header>
 
-<p>Please read this EULA agreement carefully before completing the installation process and using the <span class="app_name">Project Management</span> software. It provides a license to use the <span class="app_name">Project Management</span> software and contains warranty information and liability disclaimers.</p>
+    <mat-card-content>
+      <!--
+      <p>
+        {{terms}}
+      </p>
+    -->
+      <p>
+          The Developer shall complete the development of the Software according to the milestones described on the form attached hereto as Exhibit B. 
+          In accordance with such milestones, the final product shall be delivered to the Client by
+           [Final delivery date] (the “Delivery Date”).
+          For a period of [Time frame] after delivery of the final product, the Developer shall provide the Client attention to answer any questions 
+          
+          or assist solving any problems with regard to the operation of the Software up to [Number of hours]
+           of hours free of charge and billed to the Client at a rate of [Rate] per hour for any assistance thereafter.
+            The Developer agrees to respond to any reasonable request for assistance made by the Client regarding the
+             Software within [Time frame] of the request.Except as expressly provided in this Software Development 
+             Agreement, the Client shall not be obligated under this Agreement to provide any other support or 
+             assistance to the Developer.The Client may terminate this Software Development Agreement at any 
+             time upon material breach of the terms herein and failure to cure such a breach within [Time frame] of 
+             notification of such a breach.The Developer shall provide to the Client after the Delivery Date, 
+             a cumulative [Time frame] of training with respect to the operation of the Software if requested by the Client.
+          
+      </p>
+      <p>
+          The Parties acknowledge and agree that the Client will hold all intellectual property rights in the 
+          Software including, but not limited to, copyright and trademark rights. The Developer agrees not to 
+          claim any such ownership in the Software’s intellectual property at any time prior to or after the 
+          completion and delivery of the Software to the Client.
+      </p> 
+      <section class="example-section">
+        <mat-checkbox class="example-margin" [(ngModel)]="disabled">Agree Terms & Conditions</mat-checkbox>
+      </section>
+    </mat-card-content>
+  </mat-card>
 
-<p>If you register for a free trial of the <span class="app_name">Project Management</span> software, this EULA agreement will also govern that trial. By clicking "accept" or installing and/or using the <span class="app_name">Project Management</span> software, you are confirming your acceptance of the Software and agreeing to become bound by the terms of this EULA agreement.</p>
+  <mat-card>
+    <mat-card-content>
+        <form class="my-form" #TermsNConditionForm=ngForm (ngSubmit)="Submit()">
 
-<p>If you are entering into this EULA agreement on behalf of a company or other legal entity, you represent that you have the authority to bind such entity and its affiliates to these terms and conditions. If you do not have such authority or if you do not agree with the terms and conditions of this EULA agreement, do not install or use the Software, and you must not accept this EULA agreement.</p>
+          <mat-card-actions>
+            <button mat-raised-button type="submit" color="primary" [disabled]="!disabled">SUBMIT</button>
+          </mat-card-actions>
 
-<p>This EULA agreement shall apply only to the Software supplied by <span class="company_name">IBM</span> herewith regardless of whether other software is referred to or described herein. The terms also apply to any <span class="company_name">IBM</span> updates, supplements, Internet-based services, and support services for the Software, unless other terms accompany those items on delivery. If so, those terms apply. This EULA was created by <a href="https://www.eulatemplate.com">EULA Template</a> for <span class="app_name">Project Management</span>.
-
-<h3>License Grant</h3>
-
-<p><span class="company_name">IBM</span> hereby grants you a personal, non-transferable, non-exclusive licence to use the <span class="app_name">Project Management</span> software on your devices in accordance with the terms of this EULA agreement.</p>
-
-<p>You are permitted to load the <span class="app_name">Project Management</span> software (for example a PC, laptop, mobile or tablet) under your control. You are responsible for ensuring your device meets the minimum requirements of the <span class="app_name">Project Management</span> software.</p>
-
-<p>You are not permitted to:</p>
-
-<ul>
-<li>Edit, alter, modify, adapt, translate or otherwise change the whole or any part of the Software nor permit the whole or any part of the Software to be combined with or become incorporated in any other software, nor decompile, disassemble or reverse engineer the Software or attempt to do any such things</li>
-<li>Reproduce, copy, distribute, resell or otherwise use the Software for any commercial purpose</li>
-<li>Allow any third party to use the Software on behalf of or for the benefit of any third party</li>
-<li>Use the Software in any way which breaches any applicable local, national or international law</li>
-<li>use the Software for any purpose that <span class="company_name">IBM</span> considers is a breach of this EULA agreement</li>
-</ul>
-
-<h3>Intellectual Property and Ownership</h3>
-
-<p><span class="company_name">IBM</span> shall at all times retain ownership of the Software as originally downloaded by you and all subsequent downloads of the Software by you. The Software (and the copyright, and other intellectual property rights of whatever nature in the Software, including any modifications made thereto) are and shall remain the property of <span class="company_name">IBM</span>.</p>
-
-<p><span class="company_name">IBM</span> reserves the right to grant licences to use the Software to third parties.</p>
-
-<h3>Termination</h3>
-
-<p>This EULA agreement is effective from the date you first use the Software and shall continue until terminated. You may terminate it at any time upon written notice to <span class="company_name">IBM</span>.</p>
-
-<p>It will also terminate immediately if you fail to comply with any term of this EULA agreement. Upon such termination, the licenses granted by this EULA agreement will immediately terminate and you agree to stop all access and use of the Software. The provisions that by their nature continue and survive will survive any termination of this EULA agreement.</p>
-
-<h3>Governing Law</h3>
-
-<p>This EULA agreement, and any dispute arising out of or in connection with this EULA agreement, shall be governed by and construed in accordance with the laws of <span class="country">in</span>.</p>
-
+        </form>
+    </mat-card-content>
+  </mat-card>
 
 
-            
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>

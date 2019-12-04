@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { routing } from "./app-routing.module";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './layout/login/login.component';
@@ -12,9 +12,9 @@ import { FormsModule }   from '@angular/forms';
 import { ApiService } from "./services/apiservice.service";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TokenInterceptor } from "./services/token-interceptor.service";
-import { SuccessComponent } from './components/success/success.component';
 
-import { ManagerComponent } from './components1/manager/manager.component';
+
+import { ManagerComponent } from './components/manager/manager.component';
 import { ServiceService } from './services/service.service';
 import { AgreedocComponent } from './components/agreedoc/agreedoc.component';
 
@@ -40,15 +40,15 @@ import { OngoingProjectComponent } from './components/ongoing-project/ongoing-pr
 import { ProjectDetailsComponent } from './components/project-details/project-details.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CreateProjectComponent } from './components/create-project/create-project.component';
-import { CompletedialogComponent } from './components1/completedialog/completedialog.component';
-import { CompleteProjectComponent } from './components1/completeproject/completeproject.component';
-import { CreateSubTaskComponent } from './components1/create-sub-task/create-sub-task.component';
-import { CreateTaskComponent } from './components1/create-task/create-task.component';
-import { CardSmMComponent } from './components1/cards/card-smM/card-smM.component';
-import {CardHrChartMComponent} from './components1/cards/card-hr-chartM/card-hr-chartM.component';
-import {CardVrChartMComponent} from './components1/cards/card-vr-chartM/card-vr-chartM.component';
-import {SubtaskMComponent} from './components1/subtaskM/subtaskM.component';
-import {TaskMComponent} from './components1/taskM/taskM.component';
+import { CompletedialogComponent } from './components/completedialog/completedialog.component';
+import { CompleteProjectComponent } from './components/completeproject/completeproject.component';
+import { CreateSubTaskComponent } from './components/create-sub-task/create-sub-task.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
+import { CardSmMComponent } from './components/cards/card-sm-m/card-sm-m.component';
+import {CardHrChartMComponent} from './components/cards/card-hr-chart-m/card-hr-chart-m.component';
+import {CardVrChartMComponent} from './components/cards/card-vr-chart-m/card-vr-chart-m.component';
+import {SubtaskMComponent} from './components/subtaskM/subtaskM.component';
+import {TaskMComponent} from './components/taskM/taskM.component';
 import {WorkforceMComponent} from './layout/workforce-m/workforce-m.component';
 import { ProjectMongoService } from './services/projectmongo.service';
 import { SkillsService } from './services/skill.service';
@@ -56,13 +56,16 @@ import {EmployeeService} from './services/employee.service';
 import {ProjectService} from './services/project.service';
 import {ProjectMemberService} from './services/projectmember.service';
 import {TaskDataStorageService} from './services/taskdatastorage.service';
-import {CardLayoutMComponent } from './components1/card-layout-m/card-layout-m.component';
+import {CardLayoutMComponent } from './components/card-layout-m/card-layout-m.component';
+import {SubtaskServiceService} from './services/subtask-service.service';
+import {EmployeeUpdtaeComponent} from './components/employee-updtae/employee-updtae.component';
+import { AddmembersComponent } from './components/addmembers/addmembers.component';
+import { ViewmembersComponent } from './components/viewmembers/viewmembers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SuccessComponent,
     ManagerComponent,
     AgreedocComponent,
     CardLayoutComponent,
@@ -92,6 +95,9 @@ import {CardLayoutMComponent } from './components1/card-layout-m/card-layout-m.c
     TaskMComponent,
     WorkforceMComponent,
     CardLayoutMComponent,
+    EmployeeUpdtaeComponent,
+    AddmembersComponent,
+    ViewmembersComponent,
   ],
   imports: [
     FormsModule,
@@ -101,6 +107,7 @@ import {CardLayoutMComponent } from './components1/card-layout-m/card-layout-m.c
     MatPaginatorModule,
     ReactiveFormsModule,
     RecaptchaModule,
+    RecaptchaFormsModule,
     ChartsModule,
     HttpClientModule,
     MatGridListModule,
@@ -127,7 +134,9 @@ import {CardLayoutMComponent } from './components1/card-layout-m/card-layout-m.c
     ProjectMemberService,
     ProjectMongoService,
     SkillsService,
+    SubtaskServiceService,
     TaskDataStorageService,
+   
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

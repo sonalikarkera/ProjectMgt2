@@ -8,7 +8,7 @@ import { Skills } from '../models/skills';
 })
 export class SkillsService {
 
-  private skillURL : string;
+  private skillURL: string;
   private results: Observable<Skills[]>;
 
 

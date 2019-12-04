@@ -12,7 +12,7 @@ export class TaskService {
   private taskURL2:string;
   private saveTaskURL: string;
   constructor(private http: HttpClient) {
-    this.taskUrl='http://b8java12.iiht.tech:9090/api/getTasks';
+    this.taskUrl='http://172.18.8.211:8050/web-app/getTasksById";';
     this.taskURL2 = 'spring-end/task/TaskByProjectId';
     this.saveTaskURL = 'spring-end/task/Task';
 

@@ -12,13 +12,14 @@ export class ApiService {
  
 
   login(loginPayload) : Observable<ApiResponse> {
-    return this.http.post<ApiResponse>('http://localhost:7990/' + 'token/generate-token', loginPayload);
+   // return this.http.post<ApiResponse>('http://localhost:7990/' + 'token/generate-token', loginPayload);
+  return this.http.post<ApiResponse>('http://localhost:8050/login-service/token/generate-token', loginPayload);
   }
   private mailingUrl: string;
 
 
  public sendMail(user)
 {
-    return this.http.post('http://localhost:7990/token/send-email', user);
+    return this.http.post('http://localhost:8050/login-service/token/send-email', user);
   }
 }

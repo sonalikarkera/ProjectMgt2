@@ -13,17 +13,26 @@ var $: any;
 })
 
 export class LoginComponent implements OnInit {
+
+
   title = 'Project Management';
+
+  //errorval: boolean = false;
+  //errormsg = "";
+
+
   loginForm: FormGroup;
   submitted = false;
   invalidLogin: boolean = false;
- allowSubmit:boolean =false;
+  allowSubmit: boolean = false;
   user: User;
   constructor(private router: Router, private apiService: ApiService, private service: ServiceService) {
     this.user = new User();
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
-      pswd: new FormControl('', [Validators.required])
+      pswd: new FormControl('', [Validators.required]),
+      captcha: new FormControl(null, Validators.required)
+
 
     });
   }
@@ -46,12 +55,12 @@ export class LoginComponent implements OnInit {
         });
       }, false);
     })();
-   function capcha_filled () {
-    this.allowSubmit = true;
-}
-function capcha_expired () {
-  this.allowSubmit = false;
-}
+    function capcha_filled() {
+      this.allowSubmit = true;
+    }
+    function capcha_expired() {
+      this.allowSubmit = false;
+    }
 
     window.localStorage.removeItem('token');
 
@@ -60,8 +69,19 @@ function capcha_expired () {
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
-  
+
     if (this.loginForm.invalid) {
+
+      if (this.loginForm.controls.captcha.value === null) {
+        //this.errorval = true;
+        //this.errormsg = 
+        alert("CAPTCHA NEEDS TO BE CHECKED.");
+      }
+      else {
+        //this.errorval = false;
+        //this.errormsg = "";
+      }
+
       return;
     }
     const loginPayload = {
@@ -73,7 +93,7 @@ function capcha_expired () {
       if (data.status === 200) {
         window.localStorage.setItem('token', data.result.token);
         sessionStorage.setItem('username', loginPayload.username);
-        sessionStorage.setItem('empid', data.result.userId);
+        sessionStorage.setItem('eid', data.result.userId);
 
         console.log("admin");
         this.router.navigate(['side-nav']);
@@ -81,22 +101,22 @@ function capcha_expired () {
       else if (data.status === 201) {
         window.localStorage.setItem('token', data.result.token);
         sessionStorage.setItem('username', loginPayload.username);
-
+        sessionStorage.setItem('eid',data.result.employeeId);
         console.log("employee");
-        this.router.navigate(['success']);
+       // console.log(data.result.employeeId);
+        this.router.navigate(['agreedoc']);
 
       }
       else if (data.status === 202) {
         window.localStorage.setItem('token', data.result.token);
         sessionStorage.setItem('token', data.result.token);
         sessionStorage.setItem('username', loginPayload.username);
-        sessionStorage.setItem('empid', data.result.employeeId);
-        // //   console.log(data.result.username);
+        sessionStorage.setItem('eid',data.result.employeeId);
         // // console.log(data.result.employeeId);
         // console.log("manager");
         // this.service.check(loginPayload).subscribe(data => {
         //   if (data.status === 200) {
-            this.router.navigate(['manager']);
+        this.router.navigate(['agreedoc']);
         //   }
         //   else {
         //     console.log("ian here");

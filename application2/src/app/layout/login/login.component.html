@@ -52,13 +52,14 @@
                             data-sitekey="6LfKCsQUAAAAALLczJ0WG29d-rrR3N1R-fghl1Ar"></div>
                         -->
                         <div class="re-captcha">
-
-                            <re-captcha class="g-recaptcha" 
-                            siteKey="6LfKCsQUAAAAALLczJ0WG29d-rrR3N1R-fghl1Ar" name="captcha"
-                                 required>
-                            </re-captcha>                           
-
+                            <re-captcha formControlName="captcha" required
+                                siteKey="6LfKCsQUAAAAALLczJ0WG29d-rrR3N1R-fghl1Ar"></re-captcha>
+                           
                         </div>
+
+
+
+
 
                         <a href="#" (click)="sendmail(email.value)">Need help for signin?</a>
 

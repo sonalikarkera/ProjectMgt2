@@ -11,14 +11,14 @@ export class Employee {
     eulAgreement: boolean;
 
     constructor(  employeeId?: number,
-        firstName?: string,
-        lastName?: string,
-        middleName?: string,
-        username?: string,
-        password?: string,
-        userType?: string,
-        availability?: boolean,
-        eulAgreement?: boolean){
+                  firstName?: string,
+                  lastName?: string,
+                  middleName?: string,
+                  username?: string,
+                  password?: string,
+                  userType?: string,
+                  availability?: boolean,
+                  eulAgreement?: boolean){
             this.employeeId = employeeId;
             this.firstName = firstName;
             this.lastName = lastName;
